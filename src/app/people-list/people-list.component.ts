@@ -34,9 +34,18 @@ export class PeopleListComponent implements OnInit {
     }
   ];
 
+
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  delete(person: { id: number; name: string; username: string; phone: number; }) {
+    let index = this.peopleList.indexOf(person);
+    this.peopleList.splice(index, 1);   
+  }
+
+  myCondition = true;
 
 }
