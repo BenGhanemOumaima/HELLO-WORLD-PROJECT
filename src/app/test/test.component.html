@@ -1,17 +1,22 @@
 <div class="container">
-    <p>Hello {{name}}</p>
-    <img [src]="imageUrl" alt="formalabLogo" width="100px">
-    <button (click)="hello(name)" class="btn btn-info">Click</button>
-    <hr>
-    <ul *ngFor="let bookname of booksList">
-        <li>{{bookname}}</li>
-    </ul>
+    <form [formGroup]="myForm" (ngSubmit)="saveUser()">
+        <div class="form-row">
+            <div class="form-group col">
+                <label for="firstname">firstname :</label>
+                <input class="form-control" type="text" id="firstname" name="firstname" formControlName="firstname">
+                <div *ngIf="firstname?.touched && firstname?.invalid">
+                    <small *ngIf="firstname?.errors?.required" class="text-danger">*Firstname is required<br></small>
+                    <small *ngIf="firstname?.errors?.pattern" class="text-danger">*Invalid Firstname !<br></small>
+                    <small *ngIf="firstname?.errors?.minLength" class="text-danger">*Firstname must contain two characters at least.</small>
+                </div>
+            </div>
+        </div>
 
-    <div *ngIf="myCondition">
-        FormaLab
-    </div>
+        <div class="form-row">
+            <div class="form-group col">
+                <input type="submit " value="Send " [disabled]="myForm.invalid" class="btn btn-primary">
+            </div>
+        </div>
 
-    <div *ngIf="booksList.length == 0" class="alert alert-warning">
-        No books found !
-    </div>
+    </form>
 </div>

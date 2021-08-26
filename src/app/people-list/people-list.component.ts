@@ -11,26 +11,26 @@ export class PeopleListComponent implements OnInit {
     {
       id: 1,
       name: 'Ayoub',
-      username: "Ghozzi",
+      username: "FormaLab",
       phone: 25879456
     },
     {
       id: 2,
-      name: 'Ayoub',
-      username: "Ghozzi",
-      phone: 25879456
+      name: 'Oumaima',
+      username: "GH",
+      phone: 25874956
     },
     {
       id: 3,
-      name: 'Ayoub',
-      username: "Ghozzi",
-      phone: 25879456
+      name: 'Ali',
+      username: "Django",
+      phone: 25123789
     },
     {
       id: 4,
-      name: 'Ayoub',
-      username: "Ghozzi",
-      phone: 25879456
+      name: 'Salah',
+      username: "CM",
+      phone: 25001050
     }
   ];
 
@@ -41,7 +41,7 @@ export class PeopleListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  delete(person: { id: number; name: string; username: string; phone: number; }) {
+  delete(person:any) {
     let index = this.peopleList.indexOf(person);
     this.peopleList.splice(index, 1);   
   }
