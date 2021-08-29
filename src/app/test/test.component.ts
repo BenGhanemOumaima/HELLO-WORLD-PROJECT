@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder,  Validators} from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-test',
@@ -7,7 +7,24 @@ import { FormGroup, FormControl, FormBuilder,  Validators} from '@angular/forms'
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
-  myForm : FormGroup
+  booksList:any[] = [];
+  usersList:any[]=[];
+  myCondition = false;
+  constructor(private userService:UserService){}
+
+  ngOnInit(): void {
+    this.userService.getAllUsers().subscribe(
+      result => {
+        this.usersList=result;
+      }
+      ,
+      error => {
+        console.log(error);
+      }
+      )
+  }
+
+  /*myForm : FormGroup
   constructor(private fb:FormBuilder) { 
     let formControls = {
       firstname : new FormControl('',[
@@ -31,6 +48,6 @@ export class TestComponent implements OnInit {
 
   saveUser(){
     console.log(this.myForm.value);
-  }
+  }*/
 
 }

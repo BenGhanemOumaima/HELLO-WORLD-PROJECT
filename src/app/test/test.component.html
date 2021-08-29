@@ -1,5 +1,5 @@
 <div class="container">
-    <form [formGroup]="myForm" (ngSubmit)="saveUser()">
+    <!-- <form [formGroup]="myForm" (ngSubmit)="saveUser()">
         <div class="form-row">
             <div class="form-group col">
                 <label for="firstname">firstname :</label>
@@ -17,6 +17,11 @@
                 <input type="submit " value="Send " [disabled]="myForm.invalid" class="btn btn-primary">
             </div>
         </div>
+    </form> -->
 
-    </form>
+
+    <ul *ngFor="let user of usersList">
+        <li>{{user.firstname}}</li>
+    </ul>
+
 </div>
