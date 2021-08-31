@@ -3,6 +3,8 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-update-user',
@@ -14,7 +16,7 @@ export class UpdateUserComponent implements OnInit {
   updateUserForm : FormGroup
 
 
-  constructor(private fb:FormBuilder,private route:ActivatedRoute,private userService:UserService,private router:Router) { 
+  constructor(private fb:FormBuilder,private route:ActivatedRoute,private userService:UserService,private router:Router, private toastr: ToastrService) { 
     let FormControls = {
       firstname:new FormControl('',[
         Validators.required,
@@ -67,6 +69,8 @@ export class UpdateUserComponent implements OnInit {
     this.userService.updateUser(user).subscribe(
       res=>{
         this.router.navigate(['/people-list']);
+        this.toastr.warning(res.message);
+
       },
       err=>{
         console.log(err);

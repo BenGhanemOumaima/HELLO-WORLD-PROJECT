@@ -3,6 +3,8 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-add-user',
@@ -14,7 +16,12 @@ export class AddUserComponent implements OnInit {
   addUserForm : FormGroup
 
 
-  constructor(private fb:FormBuilder, private userService:UserService, private router: Router) { 
+  constructor(
+    private fb:FormBuilder, 
+    private userService:UserService, 
+    private router: Router, 
+    private toastr: ToastrService
+    ) { 
     let FormControls = {
       firstname:new FormControl('',[
         Validators.required,
@@ -50,7 +57,8 @@ export class AddUserComponent implements OnInit {
 
     this.userService.addUser(user).subscribe(
       res=>{
-        console.log(res);
+        //console.log(res);
+        this.toastr.success(res.message);
         this.router.navigate(['/people-list']);
       },
       err=>{
